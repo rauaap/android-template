@@ -64,7 +64,7 @@ source directory, and the `package` declaration.
 | Project name | `AndroidApp` | `settings.gradle` (`rootProject.name`) |
 | App label | `AndroidApp` | `app/src/main/res/values/strings.xml` (`app_name`) |
 | Image / cache names | `android-builder`, `android-gradle-cache` | `Makefile` (`IMAGE`, `GRADLE_CACHE`) — optional |
-| Launcher icon | placeholder "A" art | `app/src/main/res/drawable/ic_launcher_foreground.xml` |
+| Launcher icon | placeholder "A" art on a `#78909C` backdrop | `app/src/main/res/drawable/ic_launcher_foreground.xml` (the mark) and `ic_launcher_background.xml` (the backdrop) — replace both; the adaptive-icon wrappers in `mipmap-anydpi-v26/` reference them by name and need no changes |
 
 The app colors in `app/src/main/res/values/colors.xml` — `accent` `#D97757` and
 `background` `#1A1820` — are **not** placeholders. They are the shared brand
@@ -73,6 +73,23 @@ palette and are meant to carry over to every app built from this template. Use
 another palette.
 
 Bump SDK / build-tools / Gradle versions in the `Containerfile` `ARG`s if needed.
+
+## Converting this README
+
+This README describes the template, not the app you are building. Converting it
+is the last step of starting a new app — leaving it in place is how a repo ends
+up documenting a scaffold nobody is using anymore.
+
+Rewrite the top of the file to describe the actual app: its title, what it does,
+and anything a reader needs in order to use it. Delete the template-only
+material — the `Layout` section, `Starting a new app from this template`, and
+this section.
+
+The build tooling does not change during conversion, so its documentation
+survives the rewrite. Move `Build`, `Install on a device`, and `Notes` to the
+**bottom** of the file, below the app's own documentation, collected under a
+single heading such as `## Building`. They are reference material for whoever
+works on the app, not the first thing a reader should meet.
 
 ## Notes
 
