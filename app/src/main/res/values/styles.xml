@@ -3,6 +3,9 @@
         <item name="android:fontFamily">sans</item>
         <item name="android:windowActionModeOverlay">true</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:colorAccent">#00A676</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:colorPrimary">@color/background</item>
+        <item name="android:colorPrimaryDark">@color/background</item>
+        <item name="android:windowBackground">@color/background</item>
     </style>
 </resources>

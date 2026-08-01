@@ -66,6 +66,12 @@ source directory, and the `package` declaration.
 | Image / cache names | `android-builder`, `android-gradle-cache` | `Makefile` (`IMAGE`, `GRADLE_CACHE`) — optional |
 | Launcher icon | placeholder "A" art | `app/src/main/res/drawable/ic_launcher_foreground.xml` |
 
+The app colors in `app/src/main/res/values/colors.xml` — `accent` `#D97757` and
+`background` `#1A1820` — are **not** placeholders. They are the shared brand
+palette and are meant to carry over to every app built from this template. Use
+`@color/accent` and `@color/background` for new UI rather than introducing
+another palette.
+
 Bump SDK / build-tools / Gradle versions in the `Containerfile` `ARG`s if needed.
 
 ## Notes
