@@ -10,6 +10,8 @@ dependency is `podman` (and `adb`, if you want to install on a device).
 ```
 Containerfile          Fedora + JDK 21 + Android SDK + Gradle toolchain
 Makefile               build / shell / install targets (podman wrapper)
+RELEASING.md           signing, versioning, and release workflow
+scripts/               release and signing-key helpers (run in the container)
 build.gradle           root project — pins the Android Gradle Plugin version
 settings.gradle        project name + module list
 app/                   the application module (one-activity skeleton)
@@ -34,7 +36,7 @@ Output: `app/build/outputs/apk/debug/app-debug.apk`
 Other targets:
 
 ```sh
-make release            # assembleRelease
+make release            # signed, auto-versioned APK in dist/ (see RELEASING.md)
 make clean              # gradle clean
 make gradle ARGS="tasks"   # run any gradle task in the container
 make shell              # interactive shell inside the build container
