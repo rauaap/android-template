@@ -8,7 +8,7 @@ dependency is `podman` (and `adb`, if you want to install on a device).
 ## Layout
 
 ```
-Containerfile          Fedora + JDK 21 + Android SDK + Gradle toolchain
+Containerfile          Fedora + JDK 25 + Android SDK + Gradle toolchain
 Makefile               build / shell / install targets (podman wrapper)
 RELEASING.md           signing, versioning, and release workflow
 scripts/               release and signing-key helpers (run in the container)
