@@ -8,7 +8,7 @@ dependency is `podman` (and `adb`, if you want to install on a device).
 ## Layout
 
 ```
-Containerfile          Fedora + JDK 21 + Android SDK + Gradle toolchain
+Containerfile          Fedora + JDK 25 + Android SDK + Gradle toolchain
 Makefile               build / shell / install targets (podman wrapper)
 build.gradle           root project — pins the Android Gradle Plugin version
 settings.gradle        project name + module list
