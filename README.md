@@ -3,7 +3,8 @@
 A minimal Android app skeleton with a fully containerized, CLI-driven Gradle
 build. No JDK, Android SDK, or Gradle needed on the host — everything runs
 inside a podman container defined by the `Containerfile`. The only host
-dependency is `podman` (and `adb`, if you want to install on a device).
+build dependencies are `make` and `podman` (and `adb` for device installation).
+The separate version-bump helper and tooling tests also need Python 3.
 
 ## Layout
 
@@ -11,7 +12,8 @@ dependency is `podman` (and `adb`, if you want to install on a device).
 Containerfile          Fedora + JDK 25 + Android SDK + Gradle toolchain
 Makefile               build / shell / install targets (podman wrapper)
 RELEASING.md           signing, versioning, and release workflow
-scripts/               release and signing-key helpers (run in the container)
+.gitea/workflows/      main-push release workflow for a host Actions runner
+scripts/               version bump, release, signing, and publishing helpers
 build.gradle           root project — pins the Android Gradle Plugin version
 settings.gradle        project name + module list
 app/                   the application module (one-activity skeleton)
@@ -36,7 +38,9 @@ Output: `app/build/outputs/apk/debug/app-debug.apk`
 Other targets:
 
 ```sh
-make release            # signed, auto-versioned APK in dist/ (see RELEASING.md)
+make bump-version       # increment tracked versionCode before committing
+make release            # signed APK for that version in dist/ (no bump)
+make test-tooling       # tooling tests (Python 3; no container needed)
 make clean              # gradle clean
 make gradle ARGS="tasks"   # run any gradle task in the container
 make shell              # interactive shell inside the build container
@@ -44,6 +48,18 @@ make shell              # interactive shell inside the build container
 
 The Gradle cache is persisted in a named volume (`android-gradle-cache`) so
 incremental builds and the debug keystore survive between runs.
+
+## Releases and Gitea Actions
+
+Run `make bump-version`, then `make release` to verify the build. Commit the
+bumped `versionCode` with your changes and push to `main`. Release names are
+derived as `<base versionName>.<versionCode>`; builds never change the version.
+Local rebuilds replace their APK in `dist/`, but CI never overwrites a published
+release. Superseded pushes are skipped.
+
+See [RELEASING.md](RELEASING.md) for signing, migration from the old local
+counter, and Gitea setup (host runner, signing key, certificate fingerprint,
+and the `RELEASE_TOKEN` Actions secret).
 
 ## Install on a device
 
@@ -88,7 +104,8 @@ material — the `Layout` section, `Starting a new app from this template`, and
 this section.
 
 The build tooling does not change during conversion, so its documentation
-survives the rewrite. Move `Build`, `Install on a device`, and `Notes` to the
+survives the rewrite. Move `Build`, `Releases and Gitea Actions`,
+`Install on a device`, and `Notes` to the
 **bottom** of the file, below the app's own documentation, collected under a
 single heading such as `## Building`. They are reference material for whoever
 works on the app, not the first thing a reader should meet.
