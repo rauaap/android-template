@@ -35,6 +35,10 @@ make debug
 
 Output: `app/build/outputs/apk/debug/app-debug.apk`
 
+Debug builds use the `.debug` application ID suffix and the label
+`AndroidApp (Debug)`, so debug and release builds can coexist on the same device
+with separate app data. Debug version names have a `-debug` suffix.
+
 Other targets:
 
 ```sh
@@ -80,7 +84,7 @@ source directory, and the `package` declaration.
 |-------------|-------|-------|
 | Package id | `com.example.app` | `app/build.gradle` (`namespace` + `applicationId`), source dir `app/src/main/java/com/example/app/`, `package` line in `MainActivity.java` |
 | Project name | `AndroidApp` | `settings.gradle` (`rootProject.name`) |
-| App label | `AndroidApp` | `app/src/main/res/values/strings.xml` (`app_name`) |
+| App label | `AndroidApp` | `app/src/main/res/values/strings.xml` (`app_name`) and `app/src/debug/res/values/strings.xml` (keep the ` (Debug)` suffix) |
 | Image / cache names | `android-builder`, `android-gradle-cache` | `Makefile` (`IMAGE`, `GRADLE_CACHE`) — optional |
 | Launcher icon | placeholder "A" art on a `#78909C` backdrop | `app/src/main/res/drawable/ic_launcher_foreground.xml` (the mark) and `ic_launcher_background.xml` (the backdrop) — replace both; the adaptive-icon wrappers in `mipmap-anydpi-v26/` reference them by name and need no changes |
 
