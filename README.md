@@ -39,6 +39,13 @@ Debug builds use the `.debug` application ID suffix and the label
 `AndroidApp (Debug)`, so debug and release builds can coexist on the same device
 with separate app data. Debug version names have a `-debug` suffix.
 
+Debug launcher icons add a yellow warning badge around 4:30. The debug-only
+resource wrapper reuses `ic_launcher_foreground` and `ic_launcher_background`,
+so replacing either normal icon layer automatically updates the debug icon too
+(keep those resource names). Release icons are unchanged. Debug icons omit the
+monochrome layer to preserve the badge's yellow color on launchers that honor
+that opt-out; launchers that force theming may still recolor it.
+
 Other targets:
 
 ```sh

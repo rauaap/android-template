@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- At 4:30, pushed out to just inside a circle mask's 72dp visible
+         area. The same-colored round-joined stroke rounds the corners; a wider
+         dark stroke underneath adds a 1.5dp outline (which a circle mask may
+         clip at the outer corner). -->
+    <path
+        android:strokeColor="#212121"
+        android:strokeWidth="7"
+        android:strokeLineJoin="round"
+        android:pathData="M70.5,60.1 L79.5,75.7 L61.5,75.7 Z" />
+    <path
+        android:fillColor="#FFD54F"
+        android:strokeColor="#FFD54F"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round"
+        android:pathData="M70.5,60.1 L79.5,75.7 L61.5,75.7 Z" />
+    <path
+        android:strokeColor="#5D4037"
+        android:strokeWidth="2.8"
+        android:strokeLineCap="round"
+        android:pathData="M70.5,65.1 L70.5,69.9" />
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M69,73.9 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0 z" />
+</vector>
